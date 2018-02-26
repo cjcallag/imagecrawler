@@ -2,12 +2,13 @@ library(shinydashboard)
 library(htmlwidgets)
 library(htmltools)
 library(tidyverse)
-library(rvest)
+# library(rvest)
 library(DT)
-library(keras); use_condaenv("r-tfgpu")
+library(keras)
+# use_condaenv("r-tfgpu") # comment out for shiny deploy
 
 # crawl images.... need faster solution
-# target_site <- "https://www.middlebury.edu/institute"
+# target_site <- ""
 # crawl_images <- function(target_site){
 #   stem_url <- XML::parseURI(target_site)$server
 #   
