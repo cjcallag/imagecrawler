@@ -5,9 +5,9 @@ library(tidyverse)
 # library(rvest)
 library(DT)
 library(keras)
-# use_condaenv("r-tfgpu") # comment out for shiny deploy
+# use_condaenv("r-tfgpu") # comment out for shinyapps.io deploy
 
-# crawl images.... need faster solution
+# crawl images.... need more scalable solution
 # target_site <- ""
 # crawl_images <- function(target_site){
 #   stem_url <- XML::parseURI(target_site)$server
@@ -29,7 +29,7 @@ invalid_path_message <- "One of your URLs is not a valid image. Please submit im
 
 safe_download <- safely(download.file)
 
-model <- load_model_hdf5("sample_models/test_mod.h5")
+model <- load_model_hdf5("sample_models/test_mod.h5") # swap to other models
 
 process_image <- function(img_path){
   # load the image
@@ -37,7 +37,7 @@ process_image <- function(img_path){
   img <- image_load(img_path, target_size = c(224,224))
   x <- image_to_array(img)
   
-  # 4d tensor with single an element in batch dim,
+  # 4d tensor with single element in batch dim
   x <- array_reshape(x, c(1, dim(x)))
   x <- imagenet_preprocess_input(x)
   
